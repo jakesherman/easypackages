@@ -10,9 +10,9 @@
 
 <meta name="author" content="Jake Sherman" />
 
-<meta name="date" content="2016-01-04" />
+<meta name="date" content="2016-01-16" />
 
-<title>Packages Vignette</title>
+<title>easypackages Vignette</title>
 
 
 
@@ -52,18 +52,25 @@ code > span.er { color: #ff0000; font-weight: bold; }
 
 
 <div id="header">
-<h1 class="title">Packages Vignette</h1>
+<h1 class="title">easypackages Vignette</h1>
 <h4 class="author"><em>Jake Sherman</em></h4>
-<h4 class="date"><em>2016-01-04</em></h4>
+<h4 class="date"><em>2016-01-16</em></h4>
 </div>
 
 
-<p>The <code>packages</code> package makes it easy to load or install multiple packages in R. Basically, it aims to solve two small day-to-day problems faced by R users:</p>
+<div id="easypackages" class="section level1">
+<h1>easypackages</h1>
+<p>The <code>easypackages</code> package makes it easy to load or install multiple packages in R. Basically, it aims to solve two small day-to-day problems faced by R users:</p>
 <ul>
 <li>Having to call <code>library</code> once for each additional package that you wish to use</li>
 <li>Collaborators having to manually install packages that you’ve used that they don’t have</li>
 </ul>
 <p>These problems are solved with the <code>libraries</code> and <code>packages</code> functions, respectively. Read on to learn more.</p>
+<div id="to-install" class="section level3">
+<h3>To install</h3>
+<p>Development version:</p>
+<pre class="sourceCode r"><code class="sourceCode r">devtools::<span class="kw">install_github</span>(<span class="st">&quot;jakesherman/packages&quot;</span>)</code></pre>
+</div>
 <div id="loading-multiple-packages" class="section level2">
 <h2>Loading multiple packages</h2>
 <p>At its most basic, the <code>libraries</code> function allows this:</p>
@@ -73,13 +80,12 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <span class="kw">library</span>(data.table)</code></pre>
 <p>to become this:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">libraries</span>(<span class="st">&quot;dplyr&quot;</span>, <span class="st">&quot;ggplot2&quot;</span>, <span class="st">&quot;RMySQL&quot;</span>, <span class="st">&quot;data.table&quot;</span>)</code></pre>
-<p>Now in one line instead of 4!</p>
-<p><strong>Note</strong>: the functions in this package purposefully <em>do not use non-standard evaluation</em>, this package names must either be strings or variables pointing to strings (or objects of class<code>package_obj</code>, see below for more). Not using non-standard evaluation allows us to do things like this:</p>
+<p>The functions in this package purposefully <em>do not use non-standard evaluation</em>, this package names must either be strings or variables pointing to strings (or objects of class<code>package_obj</code>, see below for more). Not using non-standard evaluation allows us to do things like this:</p>
 <pre class="sourceCode r"><code class="sourceCode r">my_packages &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;dplyr&quot;</span>, <span class="st">&quot;ggplot2&quot;</span>, <span class="st">&quot;RMySQL&quot;</span>, <span class="st">&quot;data.table&quot;</span>)
 <span class="kw">libraries</span>(my_packages)</code></pre>
 </div>
 <div id="loading-or-installing-multiple-packages" class="section level2">
-<h2>Loading or <em>installing</em> multiple packages</h2>
+<h2>Loading or installing multiple packages</h2>
 <p>Similar to <code>libraries</code> is <code>packages</code>. The <code>packages</code> function looks for packages that are not currently installed and installs them after confirming that this is OK with the user (this behavior may be turned off, but is enabled by default).</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">packages</span>(<span class="st">&quot;dplyr&quot;</span>, <span class="st">&quot;ggplot2&quot;</span>, <span class="st">&quot;RMySQL&quot;</span>, <span class="st">&quot;data.table&quot;</span>)</code></pre>
 <p>This makes sharing your scripts among collaborators and colleagues simpler, as you don’t need to worry about whether or not a differnt user does or does not have the correct package or packages installed.</p>
@@ -107,10 +113,9 @@ code > span.er { color: #ff0000; font-weight: bold; }
                          devtools::install_local, 
                          <span class="dt">path =</span> <span class="st">&quot;path/to/jake_great.tar.gz&quot;</span>)</code></pre>
 <p><code>package_obj</code> objects are accepted as inputs to any of the three major functions in this package: <code>libraries</code>, <code>packages</code>, and <code>install_packages</code> (actually, all non-<code>package_obj</code> objects are converted into <code>package_obj</code>s underneath the hood). For example, we could attach/install the above packages like so:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">packages</span>(<span class="kw">package</span>(<span class="st">&quot;packages&quot;</span>), 
-         <span class="kw">package</span>(<span class="st">&quot;jake_great_package&quot;</span>, 
-                 devtools::install_local, 
-                 <span class="dt">path =</span> <span class="st">&quot;path/to/jake_great.tar.gz&quot;</span>))</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">packages</span>(<span class="kw">package</span>(<span class="st">&quot;packages&quot;</span>), <span class="kw">package</span>(<span class="st">&quot;jake_great_package&quot;</span>, 
+                                      devtools::install_local, 
+                                      <span class="dt">path =</span> <span class="st">&quot;path/to/jake_great.tar.gz&quot;</span>))</code></pre>
 <p>You may specify whether <code>package_obj</code> objects are attached or loaded with the <code>load_type</code> argument in the constructor function. The default is <em>attach</em>.</p>
 </div>
 <div id="importing-specific-functions-from-package" class="section level2">
@@ -122,6 +127,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <div id="thank-you" class="section level2">
 <h2>Thank you</h2>
 <p>Thanks for your interest, I hope this package will save you a bit of time going forward. At the moment it is a work-in-progress, so comments and suggestions are appreciated!</p>
+</div>
 </div>
 
 

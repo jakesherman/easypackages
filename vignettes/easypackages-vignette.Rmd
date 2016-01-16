@@ -1,5 +1,5 @@
 ---
-title: "Packages Vignette"
+title: "easypackages Vignette"
 author: "Jake Sherman"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
@@ -9,12 +9,21 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-The `packages` package makes it easy to load or install multiple packages in R. Basically, it aims to solve two small day-to-day problems faced by R users:
+# easypackages
+The `easypackages` package makes it easy to load or install multiple packages in R. Basically, it aims to solve two small day-to-day problems faced by R users:
 
 * Having to call `library` once for each additional package that you wish to use
 * Collaborators having to manually install packages that you've used that they don't have
 
 These problems are solved with the `libraries` and `packages` functions, respectively. Read on to learn more.
+
+### To install
+
+Development version:
+
+```r
+devtools::install_github("jakesherman/packages")
+```
 
 ## Loading multiple packages
 
@@ -33,10 +42,7 @@ to become this:
 libraries("dplyr", "ggplot2", "RMySQL", "data.table")
 ```
 
-Now in one line instead of 4! 
-
-
-**Note**: the functions in this package purposefully *do not use non-standard evaluation*, this package names must either be strings or variables pointing to strings (or objects of class`package_obj`, see below for more). Not using non-standard evaluation allows us to do things like this:
+The functions in this package purposefully *do not use non-standard evaluation*, this package names must either be strings or variables pointing to strings (or objects of class`package_obj`, see below for more). Not using non-standard evaluation allows us to do things like this:
 
 ```r
 my_packages <- c("dplyr", "ggplot2", "RMySQL", "data.table")
@@ -44,7 +50,7 @@ libraries(my_packages)
 ```
 
 
-## Loading or *installing* multiple packages
+## Loading or installing multiple packages
 
 Similar to `libraries` is `packages`. The `packages` function looks for packages that are not currently installed and installs them after confirming that this is OK with the user (this behavior may be turned off, but is enabled by default).
 
@@ -99,10 +105,9 @@ local_package <- package("jake_great_package",
 `package_obj` objects are accepted as inputs to any of the three major functions in this package: `libraries`, `packages`, and `install_packages` (actually, all non-`package_obj` objects are converted into `package_obj`s underneath the hood). For example, we could attach/install the above packages like so:
 
 ```r
-packages(package("packages"), 
-         package("jake_great_package", 
-                 devtools::install_local, 
-                 path = "path/to/jake_great.tar.gz"))
+packages(package("packages"), package("jake_great_package", 
+                                      devtools::install_local, 
+                                      path = "path/to/jake_great.tar.gz"))
 ```
 
 You may specify whether `package_obj` objects are attached or loaded with the `load_type` argument in the constructor function. The default is *attach*.
