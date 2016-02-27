@@ -17,7 +17,7 @@ install.packages("easypackages")
 Development version:
 
 ```r
-devtools::install_github("jakesherman/packages")
+devtools::install_github("jakesherman/easypackages")
 ```
 
 ## Loading multiple packages
@@ -60,13 +60,13 @@ This makes sharing your scripts among collaborators and colleagues simpler, as y
 Use a forward slash to separate a GitHub username and repo name to install an R package from a GitHub repo. For example, to install this package, do:
 
 ```r
-packages("jakesherman/packages")
+packages("jakesherman/easypackages")
 ```
 
 The same works with Bitbucket, but use a `$` to separate the username from the repo. You may mix and match between CRAN and GitHub packages, like so:
 
 ```r
-packages("dplyr", "ggplot2", "jakesherman/packages", "Rdatatable/data.table")
+packages("dplyr", "ggplot2", "jakesherman/easypackages", "Rdatatable/data.table")
 ```
 
 ## Loading vs. attaching packages
@@ -86,7 +86,7 @@ This becomes powerful as part of the `packages` function. A script you write may
 CRAN, public GitHub and public Bitbucket repos cover many R packages, but not all. In the spirit of making this package flexible, an S3 class called `package_obj` has been introduced. You can create a `package_obj` by using the `package` constructor function. 
 
 ```r
-my_package <- package("packages")
+my_package <- package("easypackages")
 ```
 
 A `package_obj` needs at minimum a name, and by default that name will be installed from CRAN when the `install_package` method is called on the object. You may specify an **installation function** (as well as, optionally, arguments for that function) that will be used to install your function instead of the default. For example, if we want to install a package locally, we could do so like:
@@ -100,7 +100,7 @@ local_package <- package("jake_great_package",
 `package_obj` objects are accepted as inputs to any of the three major functions in this package: `libraries`, `packages`, and `install_packages` (actually, all non-`package_obj` objects are converted into `package_obj`s underneath the hood). For example, we could attach/install the above packages like so:
 
 ```r
-packages(package("packages"), package("jake_great_package", 
+packages(package("easypackages"), package("jake_great_package", 
                                       devtools::install_local, 
                                       path = "path/to/jake_great.tar.gz"))
 ```
