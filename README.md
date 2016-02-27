@@ -8,6 +8,12 @@ These problems are solved with the `libraries` and `packages` functions, respect
 
 ### To install
 
+Stable release:
+
+```r
+install.packages("easypackages")
+```
+
 Development version:
 
 ```r
@@ -41,7 +47,7 @@ libraries(my_packages)
 
 ## Loading or installing multiple packages
 
-Similar to `libraries` is `packages`. The `packages` function looks for packages that are not currently installed and installs them after confirming that this is OK with the user (this behavior may be turned off, but is enabled by default).
+Similar to `libraries` is `packages`. The `packages` function **looks for packages that are not currently installed and installs them after confirming that this is OK with the user** (this behavior may be turned off, but is enabled by default).
 
 ```r
 packages("dplyr", "ggplot2", "RMySQL", "data.table")
