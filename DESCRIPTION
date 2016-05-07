@@ -1,6 +1,6 @@
 Package: easypackages
 Title: Easy Loading and Installing of Packages
-Version: 0.1.0
+Version: 0.1.1
 Authors@R: person("Jake", "Sherman", email = "jake@jakesherman.com", 
     role = c("aut", "cre"))
 Description: Easily load and install multiple packages from different sources, 
