@@ -53,7 +53,7 @@ Similar to `libraries` is `packages`. The `packages` function **looks for packag
 packages("dplyr", "ggplot2", "RMySQL", "data.table")
 ```
 
-This makes sharing your scripts among collaborators and colleagues simpler, as you don't need to worry about whether or not a differnt user does or does not have the correct package or packages installed.
+This makes sharing your scripts among collaborators and colleagues simpler, as you don't need to worry about whether or not a different user does or does not have the correct package or packages installed.
 
 ## Installing packages from GitHub (or Bitbucket)
 
